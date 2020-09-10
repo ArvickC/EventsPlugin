@@ -1,0 +1,10 @@
+name: Events
+version: ${project.version}
+main: me.crazybanana.events.Events
+api-version: 1.16
+authors: [CrazyBanana]
+description: Host Events.
+commands:
+    event:
+      description: Used to host and join events!
+      aliases: [e]
