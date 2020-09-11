@@ -1,5 +1,5 @@
 name: Events
-version: ${project.version}
+version: 1.0.2
 main: me.crazybanana.events.Events
 api-version: 1.16
 authors: [CrazyBanana]
