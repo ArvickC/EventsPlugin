@@ -45,11 +45,19 @@ public class event implements CommandExecutor {
         }
 
         // **Host Command**
-        else if(args[0].equalsIgnoreCase("host")) {
+        else if(args.length == 2 && args[0].equalsIgnoreCase("host")) {
             HostHandler(sender, args);
         }
 
-        sender.sendMessage(RED + "An error occurred. Please type, '" + GOLD + "/event help" + RED + "' to see all commands!");
+        // **Join Handler**
+        else if(args.length == 1 &&args[0].equalsIgnoreCase("join")) {
+            JoinHandler(sender);
+        }
+
+        // Error Case
+        else {
+            sender.sendMessage(RED + "An error occurred. Please type, '" + GOLD + "/event help" + RED + "' to see all commands!");
+        }
         return false;
     }
 
@@ -158,6 +166,24 @@ public class event implements CommandExecutor {
             // Console Case
         } else {
             // Error Log
+            sender.sendMessage(RED + "You Have to be a " + AQUA + "PLAYER " + RED + "to run that command!");
+        }
+    }
+
+    public void JoinHandler(CommandSender sender) {
+        // Checking if Player
+        if(sender instanceof Player) {
+            // Checking if an event is live
+            if(eventLive == true) {
+                Bukkit.dispatchCommand(console, "mvtp " + sender.getName() + " events");
+                Bukkit.dispatchCommand(console, "tp " + sender.getName() + " " + eventJoinSpawnCords.toString());
+                sender.sendMessage(AQUA + "Sending you to " + GOLD + "event" + AQUA + "!");
+            // Event not live
+            } else {
+                sender.sendMessage(RED + "No event isn't live!");
+            }
+        // Console Case
+        } else {
             sender.sendMessage(RED + "You Have to be a " + AQUA + "PLAYER " + RED + "to run that command!");
         }
     }
